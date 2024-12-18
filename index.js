@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const signUpRouter=require("./Routes/auth.js");
 const logInRouter=require("./Routes/auth.js");
+const JobRouter=require("./Routes/Job.js");
 
 const app = express();
 app.use(express.json());
@@ -11,9 +12,10 @@ app.use(express.urlencoded({extended:true}));
 
 app.use("/user",signUpRouter);
 app.use("/user",logInRouter);
+app.use("/job",JobRouter);
 
 dotenv.config();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.get("/", (req, res) => {
   res.send("hello world")
