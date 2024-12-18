@@ -5,6 +5,9 @@ const jobSchema =mongoose.Schema({
     type: String,
     required: true,
   },
+  logoUrl:{
+    type:String
+  },
   position: {
     type: String,
     required: true,
@@ -23,28 +26,30 @@ const jobSchema =mongoose.Schema({
     required: true,
     enum:["Remote","Office","Hybrid"]
   },
+  location: {
+    type: String,
+    required: true,
+  },
+  jobDesc: {
+    type: String,
+    required: true,
+  },
+  aboutCompany: {
+    type: String,
+    required: true,
+  },
+  skills:{
+    type:Array,
+    required:true
+  },
+  information: {
+    type: String,
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId, // Reference to the User model
     ref: 'users',
     required:true
     }
-//   location: {
-//     type: String,
-//     required: true,
-//   },
-//   jobDesc: {
-//     type: String,
-//     required: true,
-//   },
-//   aboutCompany: {
-//     type: String,
-//     required: true,
-//   },
-//   information: {
-//     type: String,
-//     required: true,
-//   }
-
 });
 
 
