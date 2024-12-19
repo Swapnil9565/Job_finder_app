@@ -3,6 +3,21 @@ const jobModel=require("../models/jobModel");
 const authUser=require("../middlewares/authenticate");
 const router=express.Router();
 
+//Pagination,filtering 
+router.get("/",async (req,res)=>{
+  const {limit,offset,sortBy,order,salary,name}=req.query;
+
+  //Filtering by companyName and salary=salary
+  // const jobs=await jobModel.find({companyName:{$regex:name,$options:"i"},salary}).skip(offset).limit(limit);
+  
+  const setOrder=order==="desc"?-1:1; //if order=desc then it setOder desc(-1) by default it is ascending
+  const jobs=await jobModel.find().skip(offset).limit(limit).sort({[sortBy]:setOrder}); //[sortBy]=> dynamically set fieldnames
+  if(!jobs){
+    return res.status(404).json({message:"Jobs not found"});
+  }
+  res.status(200).json(jobs);
+})
+
 // Create request for creating job
 router.post("/create",authUser,async (req,res)=>{
     const {companyName,logoUrl,position,salary,jobType,workMode,location,jobDesc,aboutCompany,skills,information}=req.body;

@@ -24,19 +24,19 @@ const jobSchema =mongoose.Schema({
   workMode: {
     type: String,
     required: true,
-    enum:["Remote","Office","Hybrid"]
+    enum:["Remote","On-Site","Hybrid"]
   },
   location: {
     type: String,
-    required: true,
+    required: true
   },
   jobDesc: {
     type: String,
-    required: true,
+    required: true
   },
   aboutCompany: {
     type: String,
-    required: true,
+    required: true
   },
   skills:{
     type:Array,
